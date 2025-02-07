@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import UserItem from "../../components/UserItem/UserItem";
 
 import "./Users.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersFromServer } from "../../Redux/users";
 
 export default function Users() {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+
+  useEffect(() => {
+    dispatch(getUsersFromServer("https://dummyjson.com/users"));
+  }, []);
   return (
     <div class="col-8 content px-0">
       <div class="content__wrapper">
@@ -57,9 +65,9 @@ export default function Users() {
 
           <div class="users__list-container">
             <div class="users__list users__list-wrapper">
-              <UserItem />
-              <UserItem />
-              <UserItem />
+              {users.map((user) => (
+                <UserItem key={user.id}/>
+              ))}
             </div>
           </div>
         </div>
