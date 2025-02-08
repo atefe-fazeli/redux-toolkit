@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function UserItem({username,email,_id}) {
+export default function UserItem({userName,email}) {
+  console.log(email)
   return (
     <div className="uesrs__item">
       <div className="users__info">
@@ -10,7 +11,7 @@ export default function UserItem({username,email,_id}) {
           className="users__img"
         />
         <div className="users__details">
-          <p className="users__name my-0">{username}</p>
+          <p className="users__name my-0">{userName}</p>
           <p lang="en" className="users__email">
            {email}
           </p>

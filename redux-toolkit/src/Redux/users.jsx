@@ -3,7 +3,7 @@ import axios from "axios";
 export const getUsersFromServer = createAsyncThunk(
   "usesr/getUsersFromServer",
   async (url) => {
-    return axios.get(url).then((res) => res.data.users);
+   return axios.get(url).then((res) => res.data);
   }
 );
 export const deleteUserFromServer = createAsyncThunk(
@@ -25,7 +25,8 @@ const slice = createSlice({
   extraReducers: {
     [getUsersFromServer.pending]: (state) => {},
     [getUsersFromServer.fulfilled]: (state, action) => {
-      state.push(action.payload);
+        console.log(action.payload,"action payload")
+      state.push(...action.payload);
     },
     [getUsersFromServer.rejected]: (state, action) => {},
     [deleteUserFromServer.pending]: (state, action) => {},
