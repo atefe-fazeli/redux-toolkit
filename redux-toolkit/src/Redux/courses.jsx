@@ -3,7 +3,7 @@ import axios from "axios";
 export const getCoursesFromServer = createAsyncThunk(
   "courses/getCoursesFromServer",
   async (url) => {
-    axios.get(url).then((res) => res);
+    return axios.get(url).then((res) => res.data);
   }
 );
 const slice = createSlice({
@@ -12,7 +12,9 @@ const slice = createSlice({
   reducers: {},
   extraReducers: {
     [getCoursesFromServer.pending]: () => {},
-    [getCoursesFromServer.fulfilled]: (state, action) => {},
+    [getCoursesFromServer.fulfilled]: (state, action) => {
+        state.push(...action.payload)
+    },
     [getCoursesFromServer.rejected]: (state, action) => {},
   },
 });
