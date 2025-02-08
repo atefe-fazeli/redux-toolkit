@@ -11,7 +11,7 @@ export default function Users() {
   const users = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(getUsersFromServer("https://dummyjson.com/users"));
+    dispatch(getUsersFromServer("https://redux-cms.iran.liara.run/api/users"));
   }, []);
   return (
     <div className="col-8 content px-0">
